@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="145.136mm" height="88.9mm" viewBox="3999.4 3156.6 571.4 350"><title></title><style type="text/css">
+*[layerid="1"] {stroke:#000000;fill:#000000;}
+*[layerid="2"] {stroke:#000000;fill:#000000;}
+*[layerid="3"] {stroke:#000000;fill:#000000;}
+*[layerid="4"] {stroke:#000000;fill:#000000;}
+*[layerid="5"] {stroke:#000000;fill:#000000;}
+*[layerid="6"] {stroke:#000000;fill:#000000;}
+*[layerid="7"] {stroke:#000000;fill:#000000;}
+*[layerid="8"] {stroke:#000000;fill:#000000;}
+*[layerid="9"] {stroke:#000000;fill:#000000;}
+*[layerid="10"] {stroke:#000000;fill:#000000;}
+*[layerid="11"] {stroke:#000000;fill:#000000;}
+*[layerid="12"] {stroke:#000000;fill:#000000;}
+*[layerid="13"] {stroke:#000000;fill:#000000;}
+*[layerid="14"] {stroke:#000000;fill:#000000;}
+*[layerid="15"] {stroke:#000000;fill:#000000;}
+*[layerid="19"] {stroke:#000000;fill:#000000;}
+*[layerid="21"] {stroke:#000000;fill:#000000;}
+*[layerid="22"] {stroke:#000000;fill:#000000;}
+*[layerid="23"] {stroke:#000000;fill:#000000;}
+*[layerid="24"] {stroke:#000000;fill:#000000;}
+*[layerid="25"] {stroke:#000000;fill:#000000;}
+*[layerid="26"] {stroke:#000000;fill:#000000;}
+*[layerid="27"] {stroke:#000000;fill:#000000;}
+*[layerid="28"] {stroke:#000000;fill:#000000;}
+*[layerid="29"] {stroke:#000000;fill:#000000;}
+*[layerid="30"] {stroke:#000000;fill:#000000;}
+*[layerid="31"] {stroke:#000000;fill:#000000;}
+*[layerid="32"] {stroke:#000000;fill:#000000;}
+*[layerid="33"] {stroke:#000000;fill:#000000;}
+*[layerid="34"] {stroke:#000000;fill:#000000;}
+*[layerid="35"] {stroke:#000000;fill:#000000;}
+*[layerid="36"] {stroke:#000000;fill:#000000;}
+*[layerid="37"] {stroke:#000000;fill:#000000;}
+*[layerid="38"] {stroke:#000000;fill:#000000;}
+*[layerid="39"] {stroke:#000000;fill:#000000;}
+*[layerid="40"] {stroke:#000000;fill:#000000;}
+*[layerid="41"] {stroke:#000000;fill:#000000;}
+*[layerid="42"] {stroke:#000000;fill:#000000;}
+*[layerid="43"] {stroke:#000000;fill:#000000;}
+*[layerid="44"] {stroke:#000000;fill:#000000;}
+*[layerid="45"] {stroke:#000000;fill:#000000;}
+*[layerid="46"] {stroke:#000000;fill:#000000;}
+*[layerid="47"] {stroke:#000000;fill:#000000;}
+*[layerid="48"] {stroke:#000000;fill:#000000;}
+*[layerid="49"] {stroke:#000000;fill:#000000;}
+*[layerid="50"] {stroke:#000000;fill:#000000;}
+*[layerid="51"] {stroke:#000000;fill:#000000;}
+*[layerid="52"] {stroke:#000000;fill:#000000;}
+*[layerid="99"] {stroke:#000000;fill:#000000;}
+*[layerid="100"] {stroke:#000000;fill:#000000;}
+*[layerid="Hole"] {stroke:#000000;fill:#000000;}
+*[layerid="DRCError"] {stroke:#000000;fill:#000000;}
+*[fill="none"] {fill: none;}
+*[stroke="none"] {stroke: none;}
+path, polyline, polygon, line {stroke-linecap:round;}
+g[c_partid="part_pad"][layerid="1"] ellipse:not([c_etype="pad_outer"]) {fill:#000000;}
+g[c_partid="part_pad"][layerid="1"] polygon:not([c_etype="pad_outer"]) {fill:#000000;}
+g[c_partid="part_pad"][layerid="1"] polyline:not([c_etype="pad_outer"]) {stroke:#000000;}
+g[c_partid="part_pad"][layerid="2"] ellipse:not([c_etype="pad_outer"]) {fill:#000000;}
+g[c_partid="part_pad"][layerid="2"] polygon:not([c_etype="pad_outer"]) {fill:#000000;}
+g[c_partid="part_pad"][layerid="2"] polyline:not([c_etype="pad_outer"]) {stroke:#000000;}
+g[c_partid="part_pad"][layerid="11"] ellipse:not([c_etype="pad_outer"]) {fill:#000000;}
+g[c_partid="part_pad"][layerid="11"] polygon:not([c_etype="pad_outer"]) {fill:#000000;}
+g[c_partid="part_pad"][layerid="11"] polyline:not([c_etype="pad_outer"]) {stroke:#000000;}
+g[c_partid="part_pad"][layerid="11"] circle {fill:#FFFFFF;}
+g[c_partid="part_pad"][layerid="11"] > polyline:nth-of-type(2) {stroke:#FFFFFF;}
+g[c_partid="part_pad"][layerid="11"][c_shape="ELLIPSE"]  polyline:nth-last-of-type(1) {stroke:#FFFFFF;}
+g[c_partid="part_pad"][layerid="11"][c_shape="RECT"]  polyline:nth-last-of-type(1) {stroke:#FFFFFF;}
+g[c_partid="part_pad"][layerid="11"][c_shape="POLYGON"]  polyline:nth-last-of-type(1) {stroke:#FFFFFF;}
+g[c_partid="part_via"] > * + circle, #gCurParts g[c_partid="part_via"] > * + circle {fill:#FFFFFF;}
+g[c_partid="part_pad"] > polygon[c_etype="pad_outer"], #gCurParts g[c_partid="part_pad"] > polygon[c_etype="pad_outer"] {stroke-linejoin: miter;stroke-miterlimit: 100;}
+g[c_partid="part_hole"] > circle {fill: #FFFFFF;}path, polyline, polygon {stroke-linejoin:round;}
+rect, circle, ellipse, polyline, line, polygon, path {shape-rendering:crispEdges;}
+</style>
+<rect x="3999.4" y="3156.6" width="571.4" height="350" fill="#FFFFFF" stroke="none"/><g c_partid="part_hole" c_etype="pinpart" c_shapetype="group" c_origin="4090.5,3278" layerid="11" id="gge5023" locked="0" ><circle cx="4090.5" cy="3278" r="6.8898"  stroke-width="1" fill-opacity="0" /></g><g c_partid="part_hole" c_etype="pinpart" c_shapetype="group" c_origin="4482.5,3278" layerid="11" id="gge5018" locked="0" ><circle cx="4482.5" cy="3278" r="6.8898"  stroke-width="1" fill-opacity="0" /></g><g c_partid="part_hole" c_etype="pinpart" c_shapetype="group" c_origin="4465.5,3403" layerid="11" id="gge5013" locked="0" ><circle cx="4465.5" cy="3403" r="6.8898"  stroke-width="1" fill-opacity="0" /></g><g c_partid="part_hole" c_etype="pinpart" c_shapetype="group" c_origin="4105.5,3403" layerid="11" id="gge5004" locked="0" ><circle cx="4105.5" cy="3403" r="6.8898"  stroke-width="1" fill-opacity="0" /></g><g c_partid="part_hole" c_etype="pinpart" c_shapetype="group" c_origin="4379.0033,3382.2915" layerid="11" id="gge30727" locked="0" ><circle cx="4379.0033" cy="3382.2915" r="4"  stroke-width="1" fill-opacity="0" /></g><g c_partid="part_hole" c_etype="pinpart" c_shapetype="group" c_origin="4398.5701,3382.3309" layerid="11" id="gge30731" locked="0" ><circle cx="4398.5701" cy="3382.3309" r="4"  stroke-width="1" fill-opacity="0" /></g><g c_partid="part_hole" c_etype="pinpart" c_shapetype="group" c_origin="4165.694,3245.482" layerid="11" id="gge17081" locked="0" ><circle cx="4165.694" cy="3245.482" r="3.5433"  stroke-width="1" fill-opacity="0" /></g><g c_partid="part_hole" c_etype="pinpart" c_shapetype="group" c_origin="4165.694,3221.86" layerid="11" id="gge17085" locked="0" ><circle cx="4165.694" cy="3221.86" r="3.5433"  stroke-width="1" fill-opacity="0" /></g><g c_partid="part_hole" c_etype="pinpart" c_shapetype="group" c_origin="4101.747,3461" layerid="11" id="gge680" locked="0" ><circle cx="4101.747" cy="3461" r="6.398"  stroke-width="1" fill-opacity="0" /></g><g c_partid="part_hole" c_etype="pinpart" c_shapetype="group" c_origin="4213.755,3461" layerid="11" id="gge684" locked="0" ><circle cx="4213.755" cy="3461" r="6.398"  stroke-width="1" fill-opacity="0" /></g><g c_partid="part_hole" c_etype="pinpart" c_shapetype="group" c_origin="4230.247,3461" layerid="11" id="gge690" locked="0" ><circle cx="4230.247" cy="3461" r="6.398"  stroke-width="1" fill-opacity="0" /></g><g c_partid="part_hole" c_etype="pinpart" c_shapetype="group" c_origin="4342.255,3461" layerid="11" id="gge694" locked="0" ><circle cx="4342.255" cy="3461" r="6.398"  stroke-width="1" fill-opacity="0" /></g><g c_partid="part_hole" c_etype="pinpart" c_shapetype="group" c_origin="4358.747,3461" layerid="11" id="gge700" locked="0" ><circle cx="4358.747" cy="3461" r="6.398"  stroke-width="1" fill-opacity="0" /></g><g c_partid="part_hole" c_etype="pinpart" c_shapetype="group" c_origin="4470.754,3461" layerid="11" id="gge704" locked="0" ><circle cx="4470.754" cy="3461" r="6.398"  stroke-width="1" fill-opacity="0" /></g><g c_partid="part_hole" c_etype="pinpart" c_shapetype="group" c_origin="4522.5,3411.504" layerid="11" id="gge2117" locked="0" ><circle cx="4522.5" cy="3411.504" r="6.398"  stroke-width="1" fill-opacity="0" /></g><g c_partid="part_hole" c_etype="pinpart" c_shapetype="group" c_origin="4522.5,3299.496" layerid="11" id="gge2121" locked="0" ><circle cx="4522.5" cy="3299.496" r="6.398"  stroke-width="1" fill-opacity="0" /></g><g c_partid="part_hole" c_etype="pinpart" c_shapetype="group" c_origin="4050.5,3299.496" layerid="11" id="gge2262" locked="0" ><circle cx="4050.5" cy="3299.496" r="6.398"  stroke-width="1" fill-opacity="0" /></g><g c_partid="part_hole" c_etype="pinpart" c_shapetype="group" c_origin="4050.5,3411.504" layerid="11" id="gge2266" locked="0" ><circle cx="4050.5" cy="3411.504" r="6.398"  stroke-width="1" fill-opacity="0" /></g><polyline points="4038.5 3422 4038.5 3289 4051.5 3289 4093.5 3247 4093.5 3212 4479.5 3212 4479.5 3246 4522.5 3289 4533.5 3289 4533.5 3420" stroke-width="1"  stroke-linecap="round" fill="none" layerid="10" net="S$4981" id="gge4980" locked="0" /><polyline points="4051.5 3422 4091.5 3462 4091.5 3473 4481.5 3473 4481.5 3462 4521.5 3422 4533.5 3422 4533.5 3420" stroke-width="1"  stroke-linecap="round" fill="none" layerid="10" net="S$4972" id="gge4971" locked="0" /><polyline points="4038.5 3422 4051.5 3422" stroke-width="1"  stroke-linecap="round" fill="none" layerid="10" net="S$4974" id="gge4973" locked="0" /></svg>
