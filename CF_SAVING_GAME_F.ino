@@ -1,6 +1,6 @@
 
 
-///////////////////////////////////////// SAVING SEQUENCE SOLUTION //////////////////////////////////
+/////////////////// SAVING SEQUENCE SOLUTION //////////////////////////////////
 
 void save_secuence()
 {
@@ -112,21 +112,21 @@ void save_secuence()
   }
 }
 
-
-
 ///////////////// SAVING LIST (state and checklist)  ///////////////////////////
 
-void add_remove_from_list(byte input, bool list[])
+void add_remove_from_list(byte input, bool list[], int add[])
 {
     if (list[input] == true) {
       debug_print("remove_from_list: ", input);
       list[input] = false;
+      store_value(add[input], false);
       MenuList[currentMenu[input]][3] = false;
       menu_redraw_required = true;
       checklist_size--;
     }else{
       debug_print("add_to_list: ", input);
       list[input] = true;
+      store_value(add[input], true);
       MenuList[currentMenu[input]][3] = true;
       menu_redraw_required = true;
       checklist_size++;
@@ -188,7 +188,6 @@ void choose_from_list(byte selected, bool list[], int list_add[]){
 
 ///////////////// SAVING connect/cut wires  ///////////////////////////
 
-
 void set_wires()
 {
   bool setting = 1;
@@ -241,7 +240,6 @@ void set_wires()
 
 ///////////////// SAVING SIMON  ///////////////////////////
 
-
 void set_simon_number_of_inputs()
 {
   debug_print("entering set_simon_inputs_used function");
@@ -271,8 +269,10 @@ void set_simon_number_of_inputs()
       }
     }else if(right_sw.get_State() > 0)
     {
+      need_new_random = true;
       simon_inputs_used = counter;
       EEPROM.update(simon_inputs_used_add, simon_inputs_used);
+      update_simon_sequence();
       display_message(18);// SAVED!
       setting = false;
       menu_timer = millis();
@@ -281,7 +281,6 @@ void set_simon_number_of_inputs()
     }
   }
 }
-
 
 void save_bool_option(byte menu, byte selected_option)
 {
@@ -292,11 +291,19 @@ void save_bool_option(byte menu, byte selected_option)
   }
   switch (menu) {
     case 67://simon_random
+      back_id = (6);
+      debug_print("back_id = ", 6);
       simon_random = value;
       store_value(simon_random_add,simon_random);
       debug_print("simon random = ",simon_random);
+      if (value == true) {
+        need_new_random = true;
+        debug_print("need new random");
+      }
     break;
     case 69://simon_sounds
+      back_id = (6);
+      debug_print("back_id = ", 6);
       simon_sounds = value;
       store_value(simon_sounds_add,simon_sounds);
       debug_print("simon_sounds = ", simon_sounds);
@@ -323,10 +330,10 @@ void save_simon_difficulty(byte difficulty)
       simon_delay = 2000;
     break;
     case 1:
-      simon_delay = 1200;
+      simon_delay = 1500;
     break;
     case 2:
-      simon_delay = 750;
+      simon_delay = 900;
     break;
     default:
       simon_delay = 2000;
@@ -335,7 +342,6 @@ void save_simon_difficulty(byte difficulty)
   store_value(simon_difficulty_add, simon_difficulty);
   menu_redraw_required = true;
 }
-
 
 void save_simon_rounds()
 {
@@ -373,14 +379,23 @@ void save_simon_rounds()
       setting = false;
       menu_timer = millis();
       back_id = (6);
+      debug_print("back_id = ", 6);
       menu_back();
     }
   }
 }
 
+void update_simon_sequence(){
+  for (byte i = 0; i < simon_array_lenght; i++) {
+    simon_sequence[i] = default_simon_sequence[simon_inputs_used][i];
+  }
+  print_simon_sequence();
+}
+
 
 // count checklist size
-byte size_checklist(){
+byte size_checklist()
+{
   checklist_size = 0;
   for (byte i = 0; i < input_count; i++) {
     if (checklist[i]==true) {

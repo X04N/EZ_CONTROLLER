@@ -73,13 +73,13 @@ void loop()
         set_morse_dash_length(currentMenu[menuPosition]);
         functionToExecute = 0;
       break;
-      //SAVE NEW CHECKLIST
+      //SAVE NEW LIST
       case 10:
         if (Menu_Seleccionat == 49) { //checklist
-          add_remove_from_list(menuPosition, checklist);
+          add_remove_from_list(menuPosition, checklist, checklist_add);
           size_checklist();
         }else if(Menu_Seleccionat == 2){ //state
-          add_remove_from_list(menuPosition, state_solution);
+          add_remove_from_list(menuPosition, state_solution, state_solution_add);
         }
         functionToExecute = 0;
       break;
@@ -203,7 +203,7 @@ void loop()
 
         case 6:
         //simon puzzle settings
-          //back_id = 0;
+          back_id = 0;
         break;
 
         case 8:
@@ -429,6 +429,7 @@ void loop()
                         digitalWrite(in_act[1], LOW);
                         last_time_flash = millis();
                         flash_state = true;
+                        play(error_sound);
                       }
                     }
                     //read finish button, if it is pushed, solve.
@@ -439,12 +440,12 @@ void loop()
                   }
             break;
 
-/*----------- SIMON -----------*/
+/*----------- EXECUTE SIMON -----------*/
             case simon:
 
              ////////  RANDOM? //////////
 
-            if (need_new_random)
+            if (simon_random && need_new_random)
             {
               create_random_simon_sequence();
             }
@@ -453,27 +454,32 @@ void loop()
 
             if(display_simon)
             {
-              if(!simon_startup && ((simon_last_display_change + simon_delay) <= millis())){
+              if(!simon_startup)
+              {
+                //delay(2000);
                 debug_print("Starting Sequence Display");
+                debug_print("Simon Delay: ",simon_delay);
                 simon_startup = true;
                 simon_last_display_change = millis();
                 if(simon_sounds)
                 {
-                  mp3.playMp3Folder(simon_sequence[simon_inputs_used][simon_display_counter]+1);
+                  mp3.playMp3Folder(simon_sequence[simon_display_counter]+1);
                   //debug_print("Play: ", simon_sequence[simon_input_number][simon_display_counter]+1);
                 }
                 debug_print("Displayed step: ", simon_display_counter);
               }
-              if (millis() > simon_last_display_change + ( (simon_delay/4) *3 ) ){
-                for (size_t i = 0; i < simon_inputs_used; i++)
+              if (simon_startup && millis() > simon_last_display_change + ( (simon_delay/4) *3 ) )
+              //If the input has been displayed for 3/4 of the simon_delay, turn it of
+              {
+                for (size_t i = 0; i < 10; i++)
                 { // Loop through imputs in simon game
                     digitalWrite(in_act[i], LOW);
                 }
-              }else
+              }else if(simon_startup && millis() <= simon_last_display_change + ( (simon_delay/4) *3 ) )
               {
                 for (size_t i = 0; i < simon_inputs_used; i++)
                 { // Loop through imputs in simon game
-                  if(simon_sequence[simon_inputs_used][simon_display_counter] == i)
+                  if(simon_sequence[simon_display_counter] == i)
                   { // if the input is the one in the current display step
                     digitalWrite(in_act[i], HIGH);
                     // light it up
@@ -490,7 +496,7 @@ void loop()
                 simon_display_counter++;
                 simon_last_display_change = millis();
                 if(simon_sounds){
-                  play(trig_in[simon_sequence[simon_inputs_used][simon_display_counter]]);
+                  play(trig_in[simon_sequence[simon_display_counter]]);
                   //mp3.playMp3Folder(simon_sequence[simon_input_number][simon_display_counter]+1);
                   //debug_print("play: ", simon_sequence[simon_input_number][simon_display_counter]+1);
                 }
@@ -509,7 +515,7 @@ void loop()
               }
             } else if(!display_simon && simon_repeat && !simon_pause)
             {
-              if ( (simon_repeat_timestamp + simon_repeat_delay) <millis())
+              if ( (simon_repeat_timestamp + simon_repeat_delay) <= millis())
               {
                 display_simon = true;
               }
@@ -527,12 +533,12 @@ void loop()
             if (!all_inputs_are_inactive)
             {
               pause_simon();
-              for (size_t i = 0; i < simon_inputs_used; i++)
+              for (size_t i = 0; i < 10; i++)
               {
                 if (input_state[i] == true)
                 //if an input is triggered
                 {
-                  if (i == simon_sequence[simon_inputs_used][simon_current_step])
+                  if (i == simon_sequence[simon_current_step])
                   {
                     //if it is the right one
                     //debug_print("i: ",i);
@@ -549,6 +555,7 @@ void loop()
                   }else
                   {
                     /////ERROR///
+                    debug_print("Simon Delay when finding ERROR: ", simon_delay);
                     simon_current_round = 0;
                     simon_current_step = 0;
                     //debug_print("i: ",i);
@@ -556,9 +563,12 @@ void loop()
                     //debug_print("Simon input number: ", simon_input_number);
                     debug_print("Simon current step :", simon_current_step);
                     debug_print( "Simon current round ", simon_current_round );
+                    need_new_random = true;
+                    display_simon = false;
+                    simon_startup = false;
+                    simon_display_counter = 0;
+                    simon_repeat_timestamp = millis();
                     play(error_sound);
-                    delay(2000);
-                    pause_simon();
                   }
                 }
               }
@@ -581,13 +591,13 @@ void loop()
                   debug_print( "Solved round ", simon_current_round );
                   simon_current_round++;
                   debug_print( "Simon current round ", simon_current_round );
-                  delay(1000);
+                  delay(1200);
                   simon_current_step = 0;
                   pause_simon();
                   play(success_sound);
                 }else
                 {
-                  solve();
+                  solved = true;
                 }
               }
             }
@@ -598,7 +608,12 @@ void loop()
 
       }
   }else{// if solved != false
-    solve();
+
+    if (solve_timestamp == 0) {
+      solve();
+    }
+
+    solve_outputs();
   }
 
 }//loop end

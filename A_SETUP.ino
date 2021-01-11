@@ -1,7 +1,8 @@
    //SETUP//    //SETUP//    //SETUP//    //SETUP//    //SETUP//    //SETUP//
 
 
-void setup() {
+void setup()
+{
 
   Serial.begin(9600);
   debug_print("Entering Setup");
@@ -24,7 +25,7 @@ void setup() {
   }else{
     Serial.println(F("MP3 Player working properly"));
     mp3.outputDevice(DFPLAYER_DEVICE_U_DISK);
-
+    mp3.setTimeOut(100);
     mp3.volume(30);  //Set volume value. From 0 to 30
 
   }
@@ -94,7 +95,7 @@ void setup() {
     digitalWrite(in_act[i], LOW);
   }
 
-  for(int i = 0; i < 2; i++)
+  for(int i = 0; i < 3; i++)
   {
     pinMode(out_en[i],OUTPUT);
   }
@@ -109,13 +110,12 @@ void setup() {
     {
       // Declarem els pins d'entrada asignats als inputs
       pinMode(input_array[i].get_pin(),INPUT_PULLUP);
-      //aprofitem el for loop per carregar de la memoria EEPROM
-      // la última solució guardada del mode state.
-      if(game_mode == 0){
-        state_solution[i] = EEPROM.read(state_solution_add[i]);
-      }else if(game_mode == 1){
-      }
     }
+
+    pinMode(left_sw.get_pin(),INPUT_PULLUP);
+    pinMode(right_sw.get_pin(),INPUT_PULLUP);
+    pinMode(A5,INPUT);
+    pinMode(A2,INPUT);
 
   /////////////// CHECK IF EEPROM IS POPULATED/////////////////
 for (byte i = 0; i < 2; i++) {
@@ -141,6 +141,7 @@ if (EEPROM_populated)
   for (byte i = 0; i < out_count; i++) {
     out_type[i] = EEPROM.read(out_type_add[i]);
   }
+
 
   morse_input_count = EEPROM.read(morse_input_count_add);
   set_morse_input_count(morse_input_count);
@@ -208,6 +209,7 @@ if (EEPROM_populated)
   //load number of inputs for SIMON game MODE
   simon_inputs_used = EEPROM.read(simon_inputs_used_add);
   debug_print("simon_input_number = ", simon_inputs_used);
+  update_simon_sequence();
   //load BOOL RANDOM for SIMON game MODE
   simon_random = EEPROM.read(simon_random_add);
   debug_print("simon_random = ",simon_random);
@@ -227,7 +229,29 @@ if (EEPROM_populated)
   reset_factory();
 }
 
-for(int i = 0; i < 2; i++)
+////////////// SET OUTPUTS TO THE SET STATE  //////////////
+
+if (debug) {//22,23,24
+  for (size_t i = 0; i < 5; i++) {
+    digitalWrite(22, LOW);
+    digitalWrite(23, LOW);
+    digitalWrite(24, LOW);
+    delay(100);
+    digitalWrite(22, HIGH);
+    delay(100);
+    digitalWrite(23, HIGH);
+    delay(100);
+    digitalWrite(24, HIGH);
+    delay(100);
+    digitalWrite(22, LOW);
+    delay(100);
+    digitalWrite(23, LOW);
+    delay(100);
+    digitalWrite(24, LOW);
+  }
+}
+
+for(int i = 0; i < out_count; i++)
 {
   if (out_type[i] == 0) {
     digitalWrite(out_en[i], HIGH);
@@ -237,10 +261,15 @@ for(int i = 0; i < 2; i++)
 }
 
 
+////////////// PRINT SETUP FINISHED  /////////
+
   debug_print("Setup Finished");
-  for (byte i = 0; i < input_count; i++) {
+  for (byte i = 0; i < input_count; i++)
+  {
     debug_print("State solution ",i);
     debug_print(" = ",state_solution[i]);
   }
   play(99);
+  debug_print("Simon Delay: ",simon_delay);
+
 }//end setup

@@ -20,36 +20,29 @@ void beep()
 void solve()
 {
   solve_timestamp = millis();
+  for (size_t i = 0; i < 3; i++)
+  {
+    out_timestamp[i] = solve_timestamp;
+  }
   Serial.println(F("================== SOLVED ==================="));
   digitalWrite(solve_led, HIGH);
+  play(solve_sound);
   display_message(48,false,0,false);
   //string 48, no second string, no duration delay, no rewrite
-  while(1){
-    for (size_t i = 0; i < 2; i++) {
-      if ((solve_timestamp + out_delay[i]) < millis()) {
-        if (out_type[i] == 0) {
-          digitalWrite(out_en[i], HIGH);
-        }else{
-          digitalWrite(out_en[i], LOW);
-        }
+}
+void solve_outputs()
+{
+  debug_print("Solve Outputs");
+  for (size_t i = 0; i < 3; i++) {
+    if ((out_timestamp[i] + (out_delay[i]*1000)) < millis()) {
+      debug_print("timestamp Passed for output: ", i);
+      if (out_type[i] == 0) {
+        digitalWrite(out_en[i], LOW);
+      }else{
+        digitalWrite(out_en[i], HIGH);
       }
     }
   }
-
-  /*//delay(output_delay);
-  digitalWrite(out_en[0], HIGH);
-  digitalWrite(out_en[1], HIGH);
-  digitalWrite(out_en[2], HIGH);
-  digitalWrite(solve_led, HIGH);
-  //beep();
-  display_message(48,false,4000);
-  delay(3000);
-  solved = false;
-  menu_redraw_required = true;
-  digitalWrite(out_en[0], LOW);
-  digitalWrite(out_en[1], LOW);
-  digitalWrite(out_en[2], LOW);
-  digitalWrite(solve_led, LOW);*/
 }
 
 
@@ -218,16 +211,26 @@ void dual_input_morse()
 
 void create_random_simon_sequence()
 {
+  debug_print("Simon Delay before creating new sequence: ", simon_delay);
   debug_print("Creating new simon sequence");
-  randomSeed(analogRead(5));
+  int a_value = analogRead(A5);
+  int b_value = millis();
+  delay(100);
+  randomSeed(a_value + b_value + 12345 - analogRead(A5));
+  debug_print("analogRead: ", analogRead(A5));
+  debug_print("Simon Delay after randomSeed: ", simon_delay);
   byte random_value = 0;
   for (byte i = 0; i < simon_array_lenght; i++) {
     random_value = random(simon_inputs_used);
-    random_simon_sequence[i] = random_value;
+    simon_sequence[i] = random_value;
     debug_print("Simon value ", i);
     debug_print("= ", random_value);
+    debug_print("Simon Delay: ", simon_delay);
   }
   need_new_random = false;
+  debug_print("Simon Delay after creating new sequence: ", simon_delay);
+  save_simon_difficulty(simon_difficulty);
+  debug_print("Simon Delay after Resaving difficulty: ", simon_delay);
 }
 
 byte last_step_in_round()
@@ -251,5 +254,6 @@ void pause_simon()
   display_simon = false;
   simon_startup = false;
   simon_display_counter = 0;
+  simon_last_display_change = millis();
   simon_pause_timestamp = millis();
 }

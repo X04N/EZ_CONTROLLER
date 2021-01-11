@@ -263,7 +263,7 @@ void redo_out_tics(){
 void redo_yes_no_ticks(bool value)
 {
   debug_print("redo_yes_no_ticks");
-  debug_print("Value: ", value);
+  debug_print("Bool Value: ", value);
   if(value == true)
   {
     MenuList[70][3] = 1;

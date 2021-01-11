@@ -1,5 +1,5 @@
 #include "Arduino.h"
-#include "SparkS.h"
+#include "EZ.h"
 
 
 extern byte menuPosition = 0;
@@ -54,13 +54,13 @@ long Input::get_State()
        // save the reading.  Next time through the loop,
       // it'll be the inputLastState:
     _INLastState = reading;
-    if ((millis() - _INLastDebounceTime) > _debounceDelay) 
+    if ((millis() - _INLastDebounceTime) > _debounceDelay)
     {
       // whatever the reading is at, it's been there for longer
       // than the debounce delay, so take it as the actual current state:
         // only if the button is pushed
-        
-        if (reading == 0) 
+
+        if (reading == 0)
         {
           //Serial.print(_INName);
           //Serial.println (F(" is now active"));
@@ -71,6 +71,6 @@ long Input::get_State()
           return 0;
         }
       }
-    
+
 return 0;
 }

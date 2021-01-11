@@ -44,3 +44,10 @@ void debug_print_active_input_count(byte active_input_count)
     Serial.println(active_input_count);
   }
 }
+
+void print_simon_sequence(){
+  for (byte i = 0; i < simon_array_lenght; i++) {
+    debug_print("Simon value ", i);
+    debug_print("= ", default_simon_sequence[simon_inputs_used][i]);
+  }
+}

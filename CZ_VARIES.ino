@@ -53,7 +53,7 @@ void reset_factory(){
   change_puzzle(state);
   // volume
   EEPROM.update(volume_add, 30);
-  volume = 30;
+  volume = 10;
   // state solution
   for (byte i = 0; i < input_count; i++) {
       EEPROM.update(state_solution_add[i], true);
@@ -92,6 +92,7 @@ void reset_factory(){
   //Default number of inputs for SIMON game MODE
   EEPROM.update(simon_inputs_used_add,4);
   simon_inputs_used = 4;
+  update_simon_sequence();
   //Default BOOL RANDOM for SIMON game MODE
   EEPROM.update(simon_random_add, false);
   simon_random = false;
@@ -99,8 +100,8 @@ void reset_factory(){
   EEPROM.update(simon_sounds_add, false);
   simon_sounds = false;
   //Default DIFFICULTY for SIMON game MODE
-  EEPROM.update(simon_difficulty_add, 2);
-  save_simon_difficulty(simon_difficulty);
+  EEPROM.update(simon_difficulty_add, 1);
+  save_simon_difficulty(1);
   //Default rounds for SIMON game MODE
   EEPROM.update(simon_rounds_add, 5);
   simon_rounds = 5;
@@ -143,9 +144,76 @@ void change_puzzle(byte id){
 }
 
 void play(byte audio){
+  if (mp3.available()) {
     mp3.stop();
     delay(5);
     mp3.playMp3Folder(audio);
     delay(5);
     mp3.playMp3Folder(audio);
+    if (debug) {
+      print_mp3_detail(mp3.readType(), mp3.read()); //Print the detail message from DFPlayer to handle different errors and states.
+    }
+  }
+}
+
+void print_mp3_detail(uint8_t type, int value)
+{
+  switch (type) {
+    case TimeOut:
+      Serial.println(F("Time Out!"));
+      break;
+    case WrongStack:
+      Serial.println(F("Stack Wrong!"));
+      break;
+    case DFPlayerCardInserted:
+      Serial.println(F("Card Inserted!"));
+      break;
+    case DFPlayerCardRemoved:
+      Serial.println(F("Card Removed!"));
+      break;
+    case DFPlayerCardOnline:
+      Serial.println(F("Card Online!"));
+      break;
+    case DFPlayerUSBInserted:
+      Serial.println("USB Inserted!");
+      break;
+    case DFPlayerUSBRemoved:
+      Serial.println("USB Removed!");
+      break;
+    case DFPlayerPlayFinished:
+      Serial.print(F("Number:"));
+      Serial.print(value);
+      Serial.println(F(" Play Finished!"));
+      break;
+    case DFPlayerError:
+      Serial.print(F("DFPlayerError:"));
+      switch (value) {
+        case Busy:
+          Serial.println(F("Card not found"));
+          break;
+        case Sleeping:
+          Serial.println(F("Sleeping"));
+          break;
+        case SerialWrongStack:
+          Serial.println(F("Get Wrong Stack"));
+          break;
+        case CheckSumNotMatch:
+          Serial.println(F("Check Sum Not Match"));
+          break;
+        case FileIndexOut:
+          Serial.println(F("File Index Out of Bound"));
+          break;
+        case FileMismatch:
+          Serial.println(F("Cannot Find File"));
+          break;
+        case Advertise:
+          Serial.println(F("In Advertise"));
+          break;
+        default:
+          break;
+      }
+      break;
+    default:
+      break;
+  }
 }

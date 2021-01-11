@@ -28,7 +28,7 @@
   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
   ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
-bool debug = true;
+bool debug = false;
 void debug_print(char * text, long variable=2147483647)
 {
   if(debug)
@@ -48,7 +48,7 @@ void debug_print(char * text, long variable=2147483647)
 #include <EEPROM.h>
 #include <avr/pgmspace.h>
 #include "U8glib.h"
-#include "SRC/SparkS.h"
+#include "SRC/EZ.h"
 //#include "SoftwareSerial.h"
 #include "DFRobotDFPlayerMini.h"
 
@@ -145,6 +145,9 @@ int out_delay_add[out_count]{
 };
 
 long solve_timestamp = 0;
+long out_timestamp[out_count]{
+  0,0,0
+};
 
 byte out_en[out_count]//out enable pins
 {
@@ -184,7 +187,7 @@ byte game_mode =  0;
 byte game_mode_add = 1;
 bool solved = false;
 byte solve_led = 30;
-byte volume = 30;
+byte volume = 10;
 byte volume_add = 47;
 
  /////////////////////   VARIABLES DEL MODO STATE  /////////////////////////////
@@ -319,10 +322,10 @@ long simon_repeat_timestamp = 0;
 
 long simon_pause_timestamp = 0;
 bool simon_pause = false;
-int simon_pause_duration = 2000;
+int simon_pause_duration = 1200;
 
 const byte simon_array_lenght =22;
-const byte simon_sequence[11][simon_array_lenght]
+const byte default_simon_sequence[11][simon_array_lenght]
 {
   {0,1,2,3,4,5,6,7,8,9,3,5,1,0,4,2,7,9,6,8,5,3},// never should be used
   {0,1,2,3,4,5,6,7,8,9,3,5,1,0,4,2,7,9,6,8,5,3},// never should be used
@@ -337,7 +340,7 @@ const byte simon_sequence[11][simon_array_lenght]
   {0,1,2,3,4,5,6,7,8,9,3,5,1,0,4,2,7,9,6,8,5,3} // 10 inputs
 };
 
-byte random_simon_sequence[20]
+byte simon_sequence[20]
 {
   255,255,255,255,255,255,255,255,255,255,255,225,255,255,255,255,255,255,255,255
 };

@@ -4,6 +4,8 @@
   //////////// OUTPUT ////////////
 
 void set_output_type(byte id){
+  debug_print("selected_output= ", selected_output);
+  debug_print("id= ", id);
   switch (id)
   {
     case 10:
@@ -71,7 +73,7 @@ void set_output_delay()
       }
     }else if(right_sw.get_State() > 0)
     {
-      out_delay[selected_output] = counter*1000;
+      out_delay[selected_output] = counter;
       EEPROM.update(out_delay_add[selected_output],out_delay[selected_output]);
       display_message(18);// SAVED!
       back_id = (33 + selected_output);
@@ -149,7 +151,7 @@ void set_volume()
       }else{
         counter = 0;
       }
-      debug_print("Displayed number of rounds: ", counter);
+      debug_print("Displayed Volume: ", counter);
     }else if(right_sw.get_State() > 0)
     {
       volume = counter;
