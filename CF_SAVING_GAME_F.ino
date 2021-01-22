@@ -32,7 +32,7 @@ void save_secuence()
          } while( u8g.nextPage() );
          display_rewrite_required = 0;
     }
-    //Serial.println(millis());
+
     if (left_sw.get_State() > 0)
     {
       Serial.println("Left_Switch");
@@ -307,6 +307,13 @@ void save_bool_option(byte menu, byte selected_option)
       simon_sounds = value;
       store_value(simon_sounds_add,simon_sounds);
       debug_print("simon_sounds = ", simon_sounds);
+    break;
+    case 80://REMOTE
+      back_id = (0);
+      debug_print("back_id = ", 0);
+      remote = value;
+      store_value(remote_add,remote);
+      debug_print("remote = ", remote);
     break;
   }
   menu_redraw_required = 1;

@@ -2,10 +2,10 @@
  *
  *
  *
-    ////// Descarregar e instalar nova llibreria poel DFPlayer
+    ////// Descarregar e instalar nova llibreria pel DFPlayer
     ////// https://github.com/PowerBroker2/DFPlayerMini_Fast
     ////// A veure si va més fina.
-    
+
     /////// AFEGIR ABOUT AL MENÚ PER A VERSIÓ DEL FIRMWARE
     ////// BUG: Algunes opcions de settings a SIMON tornen fins al menu
     // principal enlloc del de settings.(fixed? NOP)

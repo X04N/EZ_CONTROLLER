@@ -11,17 +11,6 @@ void home()
   functionToExecute = 0;
 }
 
-
-
-/*void test(char text[]){
-  if(debug){
-    Serial.print(F("Debug: "));
-    Serial.println(text);
-    Serial.print(F(" Value:"));
-    Serial.println(value);
-  }
-}*/
-
 // EEPROM store value and check if it is stored right
 
 void store_value(long address, byte value)
@@ -44,16 +33,19 @@ void store_value(long address, byte value)
   }
 }
 
-
 // SET FACTORY VALUES FOR THE FIRST POWER UP OR WHEN A FACTORY RESET IS CALLED.
 
-void reset_factory(){
+void reset_factory()
+{
   debug_print("Reset factory starting");
   //game mode
   change_puzzle(state);
+  //remote
+  EEPROM.update(remote_add, false);
+  remote = false;
   // volume
   EEPROM.update(volume_add, 30);
-  volume = 10;
+  volume = 30;
   // state solution
   for (byte i = 0; i < input_count; i++) {
       EEPROM.update(state_solution_add[i], true);

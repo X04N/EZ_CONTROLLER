@@ -28,6 +28,7 @@
   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
   ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
+
 bool debug = false;
 void debug_print(char * text, long variable=2147483647)
 {
@@ -71,7 +72,7 @@ const unsigned char u8g_logo_bits[] PROGMEM = {0x00, 0x00, 0x00, 0x00, 0x00, 0x0
 
 // Create Menu
 
-const byte menu_items_count = 81;
+const byte menu_items_count = 85;
 byte screen = 0;
 byte Menu_Seleccionat = 0;
 byte currentMenu[menu_items_count];
@@ -189,6 +190,8 @@ bool solved = false;
 byte solve_led = 30;
 byte volume = 10;
 byte volume_add = 47;
+bool remote = false;
+byte remote_add = 48;
 
  /////////////////////   VARIABLES DEL MODO STATE  /////////////////////////////
 
@@ -379,3 +382,12 @@ byte rel_in[10]{
 
 byte solve_sound = 100;
 byte error_sound = 101;
+
+
+
+
+
+
+
+
+void display_message(byte string1, byte string2 = false, int duration = 2500, bool rewrite = false, long value = 2147483647, bool header = false, byte left = false, byte right = false, byte mid = false);

@@ -93,10 +93,13 @@
     {76, 6, 15, 0},  // 76 NUMBER OF ROUNDS
     {77, 0, 1, 0},  // 77 OTHER SETTINGS
     {78, 77, 18, 0},// 78 VOLUME
-    {79, 78, 254, 0},// 78 SET VOLUME 0-30
-    {80, 253, 2, 0} // 79 BACK
+    {79, 78, 254, 0},// 79 SET VOLUME 0-30
+    {80, 77, 1, 0},// 80 REMOTE
+    {81, 0, 19, 0},// 81 ABOUT
+    {82, 0, 19, 0},// 81 ABOUT
+    {83, 252, 0, 0},// 82 VERSION X.X
+    {84, 253, 2, 0} // 83 BACK
   };// ID - PARENT - FUNCTION - ACTIVE
-
 
     //////////////// ENGLISH /////////////////////
 
@@ -180,8 +183,11 @@
       const static char EN_77[] PROGMEM = "OTROS AJUSTES";
       const static char EN_78[] PROGMEM = "VOLUMEN";
       const static char EN_79[] PROGMEM = "AJUSTAR VOLUMEN 0-30";
-      const static char EN_80[] PROGMEM = "ATRAS";
-
+      const static char EN_80[] PROGMEM = "MANDO GM";
+      const static char EN_81[] PROGMEM = "INFO";
+      const static char EN_82[] PROGMEM = "FIRMWARE";
+      const static char EN_83[] PROGMEM = "VERSION 0.5";
+      const static char EN_84[] PROGMEM = "ATRAS";
 
 
   ////////////////////////////////////////////////////////////////////////////////////////
@@ -272,7 +278,11 @@
     EN_77,
     EN_78,
     EN_79,
-    EN_80
+    EN_80,
+    EN_81,
+    EN_82,
+    EN_83,
+    EN_84
   };
 
 const byte number_of_modes = 7;

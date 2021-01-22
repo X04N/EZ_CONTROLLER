@@ -70,13 +70,15 @@ void updateCurrentMenu(/*byte alternate_parent_id = 0, bool both_parent_id = 0 /
 }
 
 
-void update_menu(){
+void update_menu()
+{
   Menu_Seleccionat = currentMenu[menuPosition];
   menu_redraw_required = 1;
   menuPosition = 0;
 }
 
-void menu_back(){
+void menu_back()
+{
   if (back_id != 252) {
     Menu_Seleccionat = back_id;
   }else if(back_id == 7){//si intenta llistar tots els puzzle settings anar a Home.
@@ -241,7 +243,8 @@ void display_message(byte string1, byte string2 = false, int duration = 2500, bo
       }
 }
 
-void redo_list_tics(bool list[], byte initial_item_id){
+void redo_list_tics(bool list[], byte initial_item_id)
+{
   for (byte i = 0; i < input_count; i++) {
     //debug_print("counter = ", i);
     //debug_print("item id = ", initial_item_id+i);
@@ -250,7 +253,8 @@ void redo_list_tics(bool list[], byte initial_item_id){
   }
 }
 
-void redo_out_tics(){
+void redo_out_tics()
+{
   if(out_type[selected_output] == 0){
     MenuList[10][3] = 1;
     MenuList[11][3] = 0;

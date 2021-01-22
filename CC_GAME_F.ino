@@ -46,45 +46,6 @@ void solve_outputs()
 }
 
 
-/////////////////////////////////////// STEP COMPARATOR /////////////////////////////////////
-
-/*bool compare_step( byte input[], byte solution[]){
-
-  if(!s_step_solved){
-    s_step_active_count = active_count(solution);
-    for(byte i = 0; i < input_count; i++)//loop inputs
-    {
-      if ((input[i]==1 && solution[i]==0) || (input[i]==0 && s_input_was_active[i] == 1) )
-      //apreten un que no és a la seqüència o deixen anar un que SI era a la seqüència
-      {
-        input_was_active_reset();
-        return false;
-      }else if(input[i]==1 && solution[i]==1)//apreten un que si és a la seqüència
-      {
-        s_input_was_active[i] = 1;
-      }
-    }
-    if(s_step_active_count == active_count(s_input_was_active)){
-      s_step_solved = true;
-    }
-  }else{
-    for(byte i = 0; i < input_count; i++)
-    {
-      if (input[i]==1 && s_input_was_active[i]==0)//apreten un que no és a la seqüència
-      {
-        input_was_active_reset();
-        return false;
-      }
-      if(input[i]==0 && s_input_was_active[i]==1)//deixen anar un dels que formaven part del step
-      {
-        s_release_counter++;
-      }
-    }
-    return(s_step_active_count == s_release_counter);
-  }
-}*/
-
-
 /////////////////////////////////////// SEQUENCE FUNCTION /////////////////////////////////////
 
 void check_sequence(byte sequence_lenght, byte step_active_count, byte release_counter, bool step_solved, byte input_was_active[],byte sequence_solution[][10],byte sequence_counter)

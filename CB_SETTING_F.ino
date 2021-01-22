@@ -3,7 +3,8 @@
 
   //////////// OUTPUT ////////////
 
-void set_output_type(byte id){
+void set_output_type(byte id)
+{
   debug_print("selected_output= ", selected_output);
   debug_print("id= ", id);
   switch (id)

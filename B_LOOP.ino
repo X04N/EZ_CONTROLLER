@@ -145,13 +145,19 @@ void loop()
         set_volume();
         functionToExecute = 0;
       break;
+      case 19:
+        //Display soft version
+        display_message(menu_items_count-3,menu_items_count-2,4000,true,2147483647,true,false,false,menu_items_count-4);
+        menu_timer = millis();
+        home();
+        //string1,string2,duration,rewrite,value,header
+      break;
       // DEFAULT
       default:
         // statements
         break;
     }//functionToExecute switch end
   }//if functionToExecute end
-
   ///////////////////////////////// SPLASH TIMER ///////////////////////////////
 
   if(millis() - menu_timer > menu_timeout)
@@ -250,6 +256,11 @@ void loop()
         case 69:
           alternate_parent_id = 67;
           redo_yes_no_ticks(simon_sounds);
+        break;
+
+        case 80:
+          alternate_parent_id = 67;
+          redo_yes_no_ticks(remote);
         break;
 
         case 999:
@@ -614,6 +625,10 @@ void loop()
     }
 
     solve_outputs();
+  }
+
+  if (remote && input_state[9] == true) {
+    solved = true;
   }
 
 }//loop end

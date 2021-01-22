@@ -130,6 +130,7 @@ if (EEPROM_populated)
   /////////////// LOAD STORED VALUES FROM EEPROM /////////////////
   change_puzzle(EEPROM.read(game_mode_add));
   debug_print("puzzle mode:", game_mode);
+  remote = EEPROM.read(remote_add);
 
   volume = EEPROM.read(volume_add);
   mp3.volume(volume);  //Set volume value. From 0 to 30
